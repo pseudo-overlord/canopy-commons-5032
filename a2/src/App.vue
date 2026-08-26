@@ -1,15 +1,16 @@
 <template>
   <nav class="navbar navbar-light bg-light border-bottom">
     <div class="container">
-      <span class="navbar-brand">Canopy Commons</span>
+      <RouterLink to="/" class="navbar-brand">Canopy Commons</RouterLink>
+      <div class="navbar-nav">
+        <RouterLink to="/" class="nav-link">Home</RouterLink>
+        <RouterLink to="/discover" class="nav-link">Discover</RouterLink>
+      </div>
     </div>
   </nav>
 
   <main class="container my-4">
-    <h1>A greener city, one neighbourhood at a time</h1>
-    <p class="lead">
-      Find a planting day, learn something new, and help nature thrive where you live.
-    </p>
+    <RouterView />
   </main>
 
   <footer class="bg-light border-top py-3 mt-5">
