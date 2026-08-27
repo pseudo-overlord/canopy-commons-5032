@@ -1,13 +1,9 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted } from "vue";
 import OpportunityCard from "../components/OpportunityCard.vue";
+import { useOpportunities } from "../composables/useOpportunities.js";
 
-const opportunities = ref([]);
-
-async function loadOpportunities() {
-  const response = await fetch("/opportunities.json");
-  opportunities.value = await response.json();
-}
+const { opportunities, loadOpportunities } = useOpportunities();
 
 onMounted(loadOpportunities);
 </script>
