@@ -1,9 +1,9 @@
 <script setup>
 import { onMounted, ref } from "vue";
+import OpportunityCard from "../components/OpportunityCard.vue";
 
 const opportunities = ref([]);
 
-// Load the activities from the JSON file in the public folder.
 async function loadOpportunities() {
   const response = await fetch("/opportunities.json");
   opportunities.value = await response.json();
@@ -16,9 +16,9 @@ onMounted(loadOpportunities);
   <h1>Discover activities</h1>
   <p class="lead">Search for something happening near you.</p>
 
-  <ul class="list-group">
-    <li v-for="item in opportunities" :key="item.id" class="list-group-item">
-      <strong>{{ item.title }}</strong> &mdash; {{ item.suburb }}
-    </li>
-  </ul>
+  <div class="row g-4">
+    <div v-for="item in opportunities" :key="item.id" class="col-12">
+      <OpportunityCard :opportunity="item" />
+    </div>
+  </div>
 </template>
