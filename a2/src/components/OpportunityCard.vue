@@ -14,5 +14,10 @@ defineProps({
         Beginners welcome
       </p>
     </div>
+    <div class="card-footer bg-white border-top-0">
+      <RouterLink :to="`/opportunities/${opportunity.id}`" class="btn btn-primary btn-sm">
+        View details
+      </RouterLink>
+    </div>
   </div>
 </template>
