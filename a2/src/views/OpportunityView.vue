@@ -3,6 +3,7 @@ import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useOpportunities } from "../composables/useOpportunities.js";
 import { formatDate, formatTime, formatDuration } from "../utils/format.js";
+import InterestForm from "../components/InterestForm.vue";
 
 const route = useRoute();
 const { opportunities, loadOpportunities } = useOpportunities();
@@ -54,5 +55,7 @@ onMounted(loadOpportunities);
 
     <h2 class="h5">What to bring</h2>
     <p>{{ opportunity.bring }}</p>
+
+    <InterestForm :opportunity-title="opportunity.title" />
   </div>
 </template>
