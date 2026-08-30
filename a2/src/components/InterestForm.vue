@@ -1,14 +1,18 @@
 <script setup>
-import { reactive } from "vue";
+import { computed, reactive, ref } from "vue";
+import { validateInterest } from "../utils/validation.js";
 
 defineProps({
   opportunityTitle: { type: String, required: true },
 });
 
 const form = reactive({ name: "", email: "", partySize: "1" });
+const submitted = ref(false);
+
+const errors = computed(() => validateInterest(form));
 
 const submitForm = () => {
-  console.log("Interest submitted", form);
+  submitted.value = true;
 };
 </script>
 
@@ -17,15 +21,34 @@ const submitForm = () => {
     <div class="card-body">
       <h2 class="h4">Register your interest</h2>
 
-      <form @submit.prevent="submitForm">
+      <form novalidate @submit.prevent="submitForm">
         <div class="mb-3">
           <label for="name" class="form-label">Your name</label>
-          <input id="name" v-model="form.name" type="text" class="form-control" />
+          <input
+            id="name"
+            v-model="form.name"
+            type="text"
+            class="form-control"
+            :class="{ 'is-invalid': submitted && errors.name }"
+          />
+          <div v-if="submitted && errors.name" class="invalid-feedback">
+            {{ errors.name }}
+          </div>
         </div>
 
         <div class="mb-3">
           <label for="email" class="form-label">Email address</label>
-          <input id="email" v-model="form.email" type="email" class="form-control" />
+          <input
+            id="email"
+            v-model="form.email"
+            type="email"
+            class="form-control"
+            :class="{ 'is-invalid': submitted && errors.email }"
+            placeholder="maya@example.com"
+          />
+          <div v-if="submitted && errors.email" class="invalid-feedback">
+            {{ errors.email }}
+          </div>
         </div>
 
         <div class="mb-3">
