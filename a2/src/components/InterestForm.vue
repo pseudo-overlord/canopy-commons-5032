@@ -53,7 +53,17 @@ const submitForm = () => {
 
         <div class="mb-3">
           <label for="partySize" class="form-label">Number of people</label>
-          <input id="partySize" v-model="form.partySize" type="number" class="form-control" />
+          <input
+            id="partySize"
+            v-model="form.partySize"
+            type="number"
+            class="form-control"
+            :class="{ 'is-invalid': submitted && errors.partySize }"
+          />
+          <div class="form-text">From 1 to 10 people, including you.</div>
+          <div v-if="submitted && errors.partySize" class="invalid-feedback">
+            {{ errors.partySize }}
+          </div>
         </div>
 
         <button type="submit" class="btn btn-primary">Register my interest</button>
