@@ -1,9 +1,10 @@
 <script setup>
 import { computed, onMounted, ref } from "vue";
 import OpportunityCard from "../components/OpportunityCard.vue";
+import DataStatus from "../components/DataStatus.vue";
 import { useOpportunities } from "../composables/useOpportunities.js";
 
-const { opportunities, loadOpportunities } = useOpportunities();
+const { opportunities, loading, error, loadOpportunities } = useOpportunities();
 
 const search = ref("");
 const activityType = ref("All");
@@ -59,7 +60,9 @@ onMounted(loadOpportunities);
     </div>
   </div>
 
-  <div class="d-flex justify-content-between align-items-center mb-3">
+  <DataStatus :loading="loading" :error="error" @retry="loadOpportunities" />
+
+  <div v-if="!loading && !error" class="d-flex justify-content-between align-items-center mb-3">
     <p class="mb-0">
       {{ filtered.length }} {{ filtered.length === 1 ? "activity" : "activities" }} found
     </p>
@@ -68,7 +71,7 @@ onMounted(loadOpportunities);
     </button>
   </div>
 
-  <div class="row g-4">
+  <div v-if="!loading && !error" class="row g-4">
     <div v-for="item in filtered" :key="item.id" class="col-12">
       <OpportunityCard :opportunity="item" />
     </div>

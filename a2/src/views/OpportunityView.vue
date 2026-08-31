@@ -1,12 +1,13 @@
 <script setup>
 import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import DataStatus from "../components/DataStatus.vue";
 import { useOpportunities } from "../composables/useOpportunities.js";
 import { formatDate, formatTime, formatDuration } from "../utils/format.js";
 import InterestForm from "../components/InterestForm.vue";
 
 const route = useRoute();
-const { opportunities, loadOpportunities } = useOpportunities();
+const { opportunities, loading, error, loadOpportunities } = useOpportunities();
 
 // Find the activity whose id matches the one in the address bar.
 const opportunity = computed(() =>
@@ -19,7 +20,9 @@ onMounted(loadOpportunities);
 <template>
   <RouterLink to="/discover" class="btn btn-link ps-0">&larr; Back to all activities</RouterLink>
 
-  <div v-if="opportunity">
+  <DataStatus :loading="loading" :error="error" @retry="loadOpportunities" />
+
+  <div v-if="!loading && !error && opportunity">
     <span class="badge text-bg-success mb-2">{{ opportunity.activityType }}</span>
     <h1>{{ opportunity.title }}</h1>
 
