@@ -61,4 +61,10 @@ onMounted(loadOpportunities);
 
     <InterestForm :opportunity-title="opportunity.title" />
   </div>
+
+  <div v-else-if="!loading && !error" class="alert alert-secondary">
+    <h1 class="h4">Activity not found</h1>
+    <p>We could not find that activity. It may have been removed.</p>
+    <RouterLink to="/discover" class="btn btn-primary">See all activities</RouterLink>
+  </div>
 </template>

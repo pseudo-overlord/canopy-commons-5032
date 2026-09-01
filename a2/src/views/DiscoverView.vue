@@ -71,9 +71,18 @@ onMounted(loadOpportunities);
     </button>
   </div>
 
-  <div v-if="!loading && !error" class="row g-4">
-    <div v-for="item in filtered" :key="item.id" class="col-12">
-      <OpportunityCard :opportunity="item" />
+  <template v-if="!loading && !error">
+    <div v-if="filtered.length" class="row g-4">
+      <div v-for="item in filtered" :key="item.id" class="col-12">
+        <OpportunityCard :opportunity="item" />
+      </div>
     </div>
-  </div>
+
+    <div v-else class="alert alert-secondary">
+      <p class="mb-2">No activities match your search.</p>
+      <button type="button" class="btn btn-secondary btn-sm" @click="clearFilters">
+        Show all activities
+      </button>
+    </div>
+  </template>
 </template>
