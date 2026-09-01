@@ -23,7 +23,7 @@ onMounted(loadOpportunities);
 
   <DataStatus :loading="loading" :error="error" @retry="loadOpportunities" />
   <div v-if="!loading && !error" class="row g-4">
-    <div v-for="item in featured" :key="item.id" class="col-12">
+    <div v-for="item in featured" :key="item.id" class="col-sm-6 col-lg-4">
       <OpportunityCard :opportunity="item" />
     </div>
   </div>

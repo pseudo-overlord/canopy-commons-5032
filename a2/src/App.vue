@@ -1,7 +1,13 @@
+<script setup>
+// The header and footer stay on every page; RouterView shows the current page.
+</script>
+
 <template>
-  <nav class="navbar navbar-light bg-light border-bottom">
+  <nav class="navbar navbar-expand-sm navbar-light bg-light border-bottom">
     <div class="container">
-      <RouterLink to="/" class="navbar-brand">Canopy Commons</RouterLink>
+      <RouterLink to="/" class="navbar-brand">
+        Canopy Commons
+      </RouterLink>
       <div class="navbar-nav">
         <RouterLink to="/" class="nav-link">Home</RouterLink>
         <RouterLink to="/discover" class="nav-link">Discover</RouterLink>

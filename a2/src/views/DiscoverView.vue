@@ -41,18 +41,18 @@ onMounted(loadOpportunities);
   <p class="lead">Search for something happening near you.</p>
 
   <div class="row g-3 mb-4">
-    <div class="col-12">
+    <div class="col-md-5">
       <label for="search" class="form-label">Search by title or suburb</label>
       <input id="search" v-model="search" type="search" class="form-control" />
     </div>
-    <div class="col-12">
+    <div class="col-md-4">
       <label for="type" class="form-label">Activity type</label>
       <select id="type" v-model="activityType" class="form-select">
         <option>All</option>
         <option v-for="type in types" :key="type">{{ type }}</option>
       </select>
     </div>
-    <div class="col-12">
+    <div class="col-md-3 d-flex align-items-end">
       <div class="form-check">
         <input id="beginner" v-model="beginnerOnly" type="checkbox" class="form-check-input" />
         <label for="beginner" class="form-check-label">Beginners welcome</label>
@@ -73,7 +73,7 @@ onMounted(loadOpportunities);
 
   <template v-if="!loading && !error">
     <div v-if="filtered.length" class="row g-4">
-      <div v-for="item in filtered" :key="item.id" class="col-12">
+      <div v-for="item in filtered" :key="item.id" class="col-sm-6 col-lg-4">
         <OpportunityCard :opportunity="item" />
       </div>
     </div>
