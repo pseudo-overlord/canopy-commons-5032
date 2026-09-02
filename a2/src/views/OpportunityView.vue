@@ -22,7 +22,8 @@ onMounted(loadOpportunities);
 
   <DataStatus :loading="loading" :error="error" @retry="loadOpportunities" />
 
-  <div v-if="!loading && !error && opportunity">
+  <div v-if="!loading && !error && opportunity" class="row g-4">
+    <div class="col-lg-7">
     <span class="badge text-bg-success mb-2">{{ opportunity.activityType }}</span>
     <h1>{{ opportunity.title }}</h1>
 
@@ -58,8 +59,11 @@ onMounted(loadOpportunities);
 
     <h2 class="h5">What to bring</h2>
     <p>{{ opportunity.bring }}</p>
+    </div>
 
-    <InterestForm :opportunity-title="opportunity.title" />
+    <div class="col-lg-5">
+      <InterestForm :key="opportunity.id" :opportunity-title="opportunity.title" />
+    </div>
   </div>
 
   <div v-else-if="!loading && !error" class="alert alert-secondary">

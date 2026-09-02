@@ -13,11 +13,17 @@ onMounted(loadOpportunities);
 </script>
 
 <template>
-  <h1>A greener city, one neighbourhood at a time</h1>
-  <p class="lead">
-    Find a planting day, learn something new, and help nature thrive where you live.
-  </p>
-  <RouterLink to="/discover" class="btn btn-primary btn-lg">Find an activity</RouterLink>
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6">
+      <h1>A greener city, one neighbourhood at a time</h1>
+      <p class="lead">
+        Find a planting day, learn something new, and help nature thrive where you live.
+      </p>
+      <RouterLink to="/discover" class="btn btn-primary btn-lg">
+        Find an activity
+      </RouterLink>
+    </div>
+  </div>
 
   <h2 class="h3 mt-5 mb-3">Featured activities</h2>
 
@@ -25,6 +31,22 @@ onMounted(loadOpportunities);
   <div v-if="!loading && !error" class="row g-4">
     <div v-for="item in featured" :key="item.id" class="col-sm-6 col-lg-4">
       <OpportunityCard :opportunity="item" />
+    </div>
+  </div>
+
+  <h2 class="h3 mt-5 mb-3">How it works</h2>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <h3 class="h5">1. Find your fit</h3>
+      <p>Browse activities by suburb or by the kind of work you would enjoy.</p>
+    </div>
+    <div class="col-md-4">
+      <h3 class="h5">2. Check the details</h3>
+      <p>See the time, the meeting place, access notes and what to bring.</p>
+    </div>
+    <div class="col-md-4">
+      <h3 class="h5">3. Register your interest</h3>
+      <p>Fill in the short form and we will keep you posted.</p>
     </div>
   </div>
 </template>
