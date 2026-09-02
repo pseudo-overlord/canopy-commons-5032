@@ -6,6 +6,7 @@
   <nav class="navbar navbar-expand-sm navbar-light bg-light border-bottom">
     <div class="container">
       <RouterLink to="/" class="navbar-brand">
+        <img src="/leaf.svg" width="28" height="28" alt="" class="me-2" />
         Canopy Commons
       </RouterLink>
       <div class="navbar-nav">
@@ -22,6 +23,9 @@
   <footer class="bg-light border-top py-3 mt-5">
     <div class="container text-muted small">
       <p class="mb-0">Canopy Commons Melbourne &middot; FIT5032 Assignment 2</p>
+      <p class="mb-0">
+        All activities are fictional examples created for this assignment.
+      </p>
     </div>
   </footer>
 </template>

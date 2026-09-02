@@ -6,8 +6,9 @@ import { useOpportunities } from "../composables/useOpportunities.js";
 
 const { opportunities, loading, error, loadOpportunities } = useOpportunities();
 
-// Only the activities marked as featured in the data file.
-const featured = computed(() => opportunities.value.filter((item) => item.featured));
+const featured = computed(() =>
+  opportunities.value.filter((item) => item.featured),
+);
 
 onMounted(loadOpportunities);
 </script>
@@ -23,11 +24,15 @@ onMounted(loadOpportunities);
         Find an activity
       </RouterLink>
     </div>
+    <div class="col-md-6 mt-4 mt-md-0">
+      <img src="/art/canopy-hero.webp" class="hero-image" alt="Volunteers planting near a creek" />
+    </div>
   </div>
 
-  <h2 class="h3 mt-5 mb-3">Featured activities</h2>
+  <h2 class="h3 mb-3">Featured activities</h2>
 
   <DataStatus :loading="loading" :error="error" @retry="loadOpportunities" />
+
   <div v-if="!loading && !error" class="row g-4">
     <div v-for="item in featured" :key="item.id" class="col-sm-6 col-lg-4">
       <OpportunityCard :opportunity="item" />

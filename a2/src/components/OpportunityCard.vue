@@ -8,6 +8,12 @@ defineProps({
 
 <template>
   <div class="card h-100">
+    <img
+      :src="`/art/${opportunity.art}.webp`"
+      class="card-img-top"
+      alt=""
+      loading="lazy"
+    />
     <div class="card-body">
       <span class="badge text-bg-success mb-2">{{ opportunity.activityType }}</span>
       <h3 class="h5 card-title">{{ opportunity.title }}</h3>
