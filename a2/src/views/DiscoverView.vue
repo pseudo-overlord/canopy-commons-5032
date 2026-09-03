@@ -54,7 +54,12 @@ onMounted(loadOpportunities);
     </div>
     <div class="col-md-3 d-flex align-items-end">
       <div class="form-check">
-        <input id="beginner" v-model="beginnerOnly" type="checkbox" class="form-check-input" />
+        <input
+          id="beginner"
+          v-model="beginnerOnly"
+          type="checkbox"
+          class="form-check-input"
+        />
         <label for="beginner" class="form-check-label">Beginners welcome</label>
       </div>
     </div>
@@ -62,16 +67,17 @@ onMounted(loadOpportunities);
 
   <DataStatus :loading="loading" :error="error" @retry="loadOpportunities" />
 
-  <div v-if="!loading && !error" class="d-flex justify-content-between align-items-center mb-3">
-    <p class="mb-0">
-      {{ filtered.length }} {{ filtered.length === 1 ? "activity" : "activities" }} found
-    </p>
-    <button type="button" class="btn btn-secondary btn-sm" @click="clearFilters">
-      Clear filters
-    </button>
-  </div>
-
   <template v-if="!loading && !error">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <p class="mb-0">
+        {{ filtered.length }}
+        {{ filtered.length === 1 ? "activity" : "activities" }} found
+      </p>
+      <button type="button" class="btn btn-secondary btn-sm" @click="clearFilters">
+        Clear filters
+      </button>
+    </div>
+
     <div v-if="filtered.length" class="row g-4">
       <div v-for="item in filtered" :key="item.id" class="col-sm-6 col-lg-4">
         <OpportunityCard :opportunity="item" />
