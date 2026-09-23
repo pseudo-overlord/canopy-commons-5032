@@ -1,0 +1,21 @@
+/* A few small additions on top of Bootstrap. */
+
+.card-img-top {
+  height: 180px;
+  object-fit: cover;
+}
+
+.hero-image {
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
+.detail-image {
+  width: 100%;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.router-link-active {
+  font-weight: bold;
+}
