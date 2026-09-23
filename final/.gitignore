@@ -1,2 +1,12 @@
 node_modules/
 dist/
+.env*
+!.env.example
+.firebase/
+*-debug.log
+coverage/
+test-results/
+playwright-report/
+evidence/
+handoff/
+*.zip
