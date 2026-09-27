@@ -19,3 +19,45 @@
 .router-link-active {
   font-weight: bold;
 }
+
+:focus-visible {
+  outline: 3px solid #594400;
+  outline-offset: 3px;
+}
+.skip-link {
+  position: fixed;
+  top: -5rem;
+  left: 1rem;
+  z-index: 2000;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  color: #153c2a;
+}
+.skip-link:focus {
+  top: 0.5rem;
+}
+.navbar .container,
+.navbar-nav {
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+.text-muted,
+.form-text {
+  color: #545b62 !important;
+}
+.text-success {
+  color: #146c43 !important;
+}
+.text-danger,
+.invalid-feedback {
+  color: #b02a37 !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}

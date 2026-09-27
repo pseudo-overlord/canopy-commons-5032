@@ -1,5 +1,6 @@
 <script setup>
 import { computed, reactive, ref } from "vue";
+import { focusFirstError } from "../utils/focus.js";
 import { validateInterest } from "../utils/validation.js";
 
 const props = defineProps({
@@ -12,9 +13,13 @@ const confirmation = ref(null);
 
 const errors = computed(() => validateInterest(form));
 
-const submitForm = () => {
+const submitForm = async (event) => {
   submitted.value = true;
 
+  if (Object.keys(errors.value).length > 0) {
+    await focusFirstError(event);
+    return;
+  }
   if (Object.keys(errors.value).length === 0) {
     confirmation.value = {
       name: form.name.trim(),
@@ -36,13 +41,14 @@ const editDetails = () => {
       <div v-if="confirmation">
         <h2 class="h4">Thanks, {{ confirmation.name }}!</h2>
         <p>
-          You have registered interest in <strong>{{ opportunityTitle }}</strong> for
+          You have registered interest in
+          <strong>{{ opportunityTitle }}</strong> for
           {{ confirmation.partySize }}
           {{ confirmation.partySize === 1 ? "person" : "people" }}.
         </p>
         <p class="text-muted small">
-          We would contact you at {{ confirmation.email }}. This is a demonstration, so
-          nothing is actually sent or saved.
+          We would contact you at {{ confirmation.email }}. This is a
+          demonstration, so nothing is actually sent or saved.
         </p>
         <button type="button" class="btn btn-secondary" @click="editDetails">
           Edit my details
@@ -52,7 +58,8 @@ const editDetails = () => {
       <div v-else>
         <h2 class="h4">Register your interest</h2>
         <p class="text-muted small">
-          This is a demonstration form. Your details are only kept while this page is open.
+          This is a demonstration form. Your details are only kept while this
+          page is open.
         </p>
 
         <form novalidate @submit.prevent="submitForm">
@@ -61,11 +68,19 @@ const editDetails = () => {
             <input
               id="name"
               v-model="form.name"
+              :aria-invalid="submitted && !!errors.name"
+              :aria-describedby="
+                submitted && errors.name ? 'name-error' : undefined
+              "
               type="text"
               class="form-control"
               :class="{ 'is-invalid': submitted && errors.name }"
             />
-            <div v-if="submitted && errors.name" class="invalid-feedback">
+            <div
+              v-if="submitted && errors.name"
+              id="name-error"
+              class="invalid-feedback"
+            >
               {{ errors.name }}
             </div>
           </div>
@@ -75,12 +90,20 @@ const editDetails = () => {
             <input
               id="email"
               v-model="form.email"
+              :aria-invalid="submitted && !!errors.email"
+              :aria-describedby="
+                submitted && errors.email ? 'email-error' : undefined
+              "
               type="email"
               class="form-control"
               :class="{ 'is-invalid': submitted && errors.email }"
-              placeholder="maya@example.com"
+              placeholder="alexmurphy@example.com"
             />
-            <div v-if="submitted && errors.email" class="invalid-feedback">
+            <div
+              v-if="submitted && errors.email"
+              id="email-error"
+              class="invalid-feedback"
+            >
               {{ errors.email }}
             </div>
           </div>
@@ -90,17 +113,27 @@ const editDetails = () => {
             <input
               id="partySize"
               v-model="form.partySize"
+              :aria-invalid="submitted && !!errors.partySize"
+              :aria-describedby="
+                submitted && errors.partySize ? 'partySize-error' : undefined
+              "
               type="number"
               class="form-control"
               :class="{ 'is-invalid': submitted && errors.partySize }"
             />
             <div class="form-text">From 1 to 10 people, including you.</div>
-            <div v-if="submitted && errors.partySize" class="invalid-feedback">
+            <div
+              v-if="submitted && errors.partySize"
+              id="partySize-error"
+              class="invalid-feedback"
+            >
               {{ errors.partySize }}
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary">Register my interest</button>
+          <button type="submit" class="btn btn-primary">
+            Register my interest
+          </button>
         </form>
       </div>
     </div>

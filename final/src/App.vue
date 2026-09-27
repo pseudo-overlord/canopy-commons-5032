@@ -36,6 +36,7 @@ const handleLogout = async () => {
 </script>
 
 <template>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <nav
     class="navbar navbar-expand-sm navbar-light bg-light border-bottom"
     aria-label="Main navigation"
@@ -76,7 +77,7 @@ const handleLogout = async () => {
     </div>
   </nav>
 
-  <main class="container my-4">
+  <main id="main-content" tabindex="-1" class="container my-4">
     <div v-if="authError" class="alert alert-warning" role="alert">
       <p class="mb-2">{{ authError }}</p>
       <button
