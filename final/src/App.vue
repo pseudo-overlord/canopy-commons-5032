@@ -1,9 +1,43 @@
 <script setup>
-// The header and footer stay on every page; RouterView shows the current page.
+import { watch } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import {
+  authError,
+  currentUser,
+  initialiseAccounts,
+  logout,
+} from "./auth.js";
+
+const router = useRouter();
+const route = useRoute();
+watch(
+  currentUser,
+  (user) => {
+    if (route.meta.requiresAuth && !user)
+      router.replace({
+        path: "/login",
+        query: { denied: "1", redirect: route.fullPath },
+      });
+  },
+  { flush: "sync" },
+);
+
+const handleLogout = async () => {
+  try {
+    await logout();
+    router.push("/");
+  } catch {
+    authError.value =
+      "Could not sign out. Please retry before leaving a shared device.";
+  }
+};
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-sm navbar-light bg-light border-bottom">
+  <nav
+    class="navbar navbar-expand-sm navbar-light bg-light border-bottom"
+    aria-label="Main navigation"
+  >
     <div class="container">
       <RouterLink to="/" class="navbar-brand">
         <img src="/leaf.svg" width="28" height="28" alt="" class="me-2" />
@@ -12,11 +46,36 @@
       <div class="navbar-nav">
         <RouterLink to="/" class="nav-link">Home</RouterLink>
         <RouterLink to="/discover" class="nav-link">Discover</RouterLink>
+
+        <template v-if="currentUser">
+          <RouterLink to="/account" class="nav-link">My account</RouterLink>
+          <button
+            type="button"
+            class="btn btn-link nav-link"
+            @click="handleLogout"
+          >
+            Log out
+          </button>
+        </template>
+        <template v-else>
+          <RouterLink to="/login" class="nav-link">Log in</RouterLink>
+          <RouterLink to="/register" class="nav-link">Register</RouterLink>
+        </template>
       </div>
     </div>
   </nav>
 
   <main class="container my-4">
+    <div v-if="authError" class="alert alert-warning" role="alert">
+      <p class="mb-2">{{ authError }}</p>
+      <button
+        type="button"
+        class="btn btn-outline-secondary btn-sm"
+        @click="initialiseAccounts"
+      >
+        Retry account storage
+      </button>
+    </div>
     <RouterView />
   </main>
 
