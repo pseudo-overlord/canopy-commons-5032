@@ -18,6 +18,8 @@ watch(
         path: "/login",
         query: { denied: "1", redirect: route.fullPath },
       });
+    else if (route.meta.role && user?.role !== route.meta.role)
+      router.replace("/access-denied");
   },
   { flush: "sync" },
 );
@@ -46,6 +48,15 @@ const handleLogout = async () => {
       <div class="navbar-nav">
         <RouterLink to="/" class="nav-link">Home</RouterLink>
         <RouterLink to="/discover" class="nav-link">Discover</RouterLink>
+
+        <!-- Only coordinators are shown the overview link. -->
+        <RouterLink
+          v-if="currentUser?.role === 'coordinator'"
+          to="/coordinator"
+          class="nav-link"
+        >
+          Overview
+        </RouterLink>
 
         <template v-if="currentUser">
           <RouterLink to="/account" class="nav-link">My account</RouterLink>

@@ -5,6 +5,8 @@ import OpportunityView from "./views/OpportunityView.vue";
 import LoginView from "./views/LoginView.vue";
 import RegisterView from "./views/RegisterView.vue";
 import AccountView from "./views/AccountView.vue";
+import CoordinatorView from "./views/CoordinatorView.vue";
+import AccessDeniedView from "./views/AccessDeniedView.vue";
 import NotFoundView from "./views/NotFoundView.vue";
 import { currentUser } from "./auth.js";
 
@@ -25,6 +27,14 @@ const routes = [
     component: AccountView,
     meta: { requiresAuth: true },
   },
+  // Only coordinators can see the overview page.
+  {
+    path: "/coordinator",
+    name: "Coordinator",
+    component: CoordinatorView,
+    meta: { requiresAuth: true, role: "coordinator" },
+  },
+  { path: "/access-denied", name: "AccessDenied", component: AccessDeniedView },
   { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFoundView },
 ];
 
@@ -38,6 +48,10 @@ const router = createRouter({
 router.beforeEach((to) => {
   if (to.meta.requiresAuth && !currentUser.value) {
     return { path: "/login", query: { denied: "1", redirect: to.fullPath } };
+  }
+
+  if (to.meta.role && currentUser.value?.role !== to.meta.role) {
+    return "/access-denied";
   }
 });
 
