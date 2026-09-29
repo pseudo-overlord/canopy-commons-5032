@@ -2,7 +2,7 @@
 import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import DataStatus from "../components/DataStatus.vue";
-import InterestForm from "../components/InterestForm.vue";
+import ActivityRating from "../components/ActivityRating.vue";
 import { useOpportunities } from "../composables/useOpportunities.js";
 import { formatDate, formatTime, formatDuration } from "../utils/format.js";
 
@@ -17,13 +17,17 @@ onMounted(loadOpportunities);
 </script>
 
 <template>
-  <RouterLink to="/discover" class="btn btn-link ps-0">&larr; Back to all activities</RouterLink>
+  <RouterLink to="/discover" class="btn btn-link ps-0"
+    >&larr; Back to all activities</RouterLink
+  >
 
   <DataStatus :loading="loading" :error="error" @retry="loadOpportunities" />
 
   <div v-if="!loading && !error && opportunity" class="row g-4">
     <div class="col-lg-7">
-      <span class="badge text-bg-success mb-2">{{ opportunity.activityType }}</span>
+      <span class="badge text-bg-success mb-2">{{
+        opportunity.activityType
+      }}</span>
       <h1>{{ opportunity.title }}</h1>
 
       <img
@@ -67,13 +71,19 @@ onMounted(loadOpportunities);
     </div>
 
     <div class="col-lg-5">
-      <InterestForm :key="opportunity.id" :opportunity-title="opportunity.title" />
+      <ActivityRating :activity-id="opportunity.id" />
+      <p class="alert alert-secondary">
+        The original activity date is a fictional example. Future demonstration
+        sessions have their own dates below.
+      </p>
     </div>
   </div>
 
   <div v-else-if="!loading && !error" class="alert alert-secondary">
     <h1 class="h4">Activity not found</h1>
     <p>We could not find that activity. It may have been removed.</p>
-    <RouterLink to="/discover" class="btn btn-primary">See all activities</RouterLink>
+    <RouterLink to="/discover" class="btn btn-primary"
+      >See all activities</RouterLink
+    >
   </div>
 </template>
