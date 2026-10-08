@@ -8,7 +8,7 @@ import AccountView from "./views/AccountView.vue";
 import CoordinatorView from "./views/CoordinatorView.vue";
 import AccessDeniedView from "./views/AccessDeniedView.vue";
 import NotFoundView from "./views/NotFoundView.vue";
-import { currentUser } from "./auth.js";
+import { currentUser } from "./identity.js";
 
 const routes = [
   { path: "/", name: "Home", component: HomeView },

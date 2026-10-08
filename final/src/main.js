@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router.js";
-import { restoreSession, initialiseAccounts } from "./auth.js";
+import { restoreSession, initialiseAccounts } from "./identity.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 

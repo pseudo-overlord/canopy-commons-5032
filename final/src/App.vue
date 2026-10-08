@@ -6,7 +6,7 @@ import {
   currentUser,
   initialiseAccounts,
   logout,
-} from "./auth.js";
+} from "./identity.js";
 
 const router = useRouter();
 const route = useRoute();

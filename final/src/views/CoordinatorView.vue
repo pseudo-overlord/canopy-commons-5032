@@ -1,6 +1,6 @@
 <script setup>
 import { computed, onMounted, ref, watch } from "vue";
-import { readAccounts, currentUser } from "../auth.js";
+import { readAccounts, cloudMode, currentUser } from "../identity.js";
 import {
   averageRating,
   ratingsFor,
@@ -84,6 +84,9 @@ onMounted(() => {
   <p>
     Explore activity feedback and registered accounts. Search any column, sort a
     heading, or export the matching records.
+  </p>
+  <p v-if="!cloudMode" class="alert alert-info">
+    Local demonstration data. Cloud integration is being tested.
   </p>
   <p v-if="accountLoading" role="status">Loading account summary…</p>
   <div v-else class="row g-3 mb-4" aria-label="Account summary">

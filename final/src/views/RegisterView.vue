@@ -1,7 +1,7 @@
 <script setup>
 import { computed, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
-import { register } from "../auth.js";
+import { register } from "../identity.js";
 import { focusFirstError } from "../utils/focus.js";
 import { validateAccount } from "../utils/validation.js";
 import PasswordField from "../components/PasswordField.vue";
