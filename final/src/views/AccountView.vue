@@ -6,7 +6,7 @@ import {
   requestVerification,
   refreshVerification,
 } from "../identity.js";
-import { myRatings } from "../ratings.js";
+import { myRatings } from "../feedback.js";
 import { useOpportunities } from "../composables/useOpportunities.js";
 
 const { opportunities, loadOpportunities } = useOpportunities();

@@ -1,6 +1,6 @@
 <script setup>
 import { computed, onUnmounted, ref, watch } from "vue";
-import { currentUser } from "../auth.js";
+import { currentUser } from "../identity.js";
 import {
   averageRating,
   myRating,
@@ -8,7 +8,7 @@ import {
   ratingsFor,
   refreshRatings,
   saveRating,
-} from "../ratings.js";
+} from "../feedback.js";
 
 const props = defineProps({
   activityId: { type: String, required: true },

@@ -6,7 +6,7 @@ import {
   ratingsFor,
   ratingsError,
   refreshRatings,
-} from "../ratings.js";
+} from "../feedback.js";
 import { useOpportunities } from "../composables/useOpportunities.js";
 import DataTable from "../components/DataTable.vue";
 import DataStatus from "../components/DataStatus.vue";
