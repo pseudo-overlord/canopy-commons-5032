@@ -1,0 +1,5 @@
+{
+  "searchUrl": "https://photon.komoot.io/api/",
+  "routeUrl": "https://routing.openstreetmap.de/routed-car/route/v1/driving",
+  "tileUrl": "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+}
