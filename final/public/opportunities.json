@@ -12,7 +12,10 @@
     "description": "Spend a morning helping native plants find a home along the creek corridor. Learn how small patches of vegetation create shelter for local birds and insects, then work together to plant and mulch seedlings.",
     "bring": "Closed shoes, a hat and a refillable water bottle. Tools and gloves are provided in this fictional activity.",
     "featured": true,
-    "art": "creek-corridor-planting"
+    "art": "creek-corridor-planting",
+    "longitude": 144.897345,
+    "latitude": -37.7981339,
+    "mapLocationLabel": "Approximate Footscray suburb reference point; not a confirmed meeting point."
   },
   {
     "id": "native-garden-workshop",
@@ -27,7 +30,10 @@
     "description": "A balcony, courtyard or tiny backyard can make room for nature. Explore a selection of native plants, learn about sunlight and soil, and sketch a small garden that suits your space.",
     "bring": "A notebook and an idea of the sunlight in your space. Sample pots and materials are provided.",
     "featured": true,
-    "art": "native-garden-workshop"
+    "art": "native-garden-workshop",
+    "longitude": 144.9613103,
+    "latitude": -37.7664715,
+    "mapLocationLabel": "Approximate Brunswick suburb reference point; not a confirmed meeting point."
   },
   {
     "id": "pollinator-walk",
@@ -42,7 +48,10 @@
     "description": "Slow down and notice the small visitors keeping our gardens growing. Practise observing pollinators without disturbing them and discover simple ways to create habitat at home.",
     "bring": "Comfortable shoes and water. A camera or magnifying glass is optional.",
     "featured": true,
-    "art": "pollinator-walk"
+    "art": "pollinator-walk",
+    "longitude": 145.2098421,
+    "latitude": -37.990119,
+    "mapLocationLabel": "Approximate Dandenong suburb reference point; not a confirmed meeting point."
   },
   {
     "id": "woodland-care",
@@ -57,7 +66,10 @@
     "description": "Help established seedlings through spring with careful weeding, watering and fresh mulch. This session suits volunteers with some previous outdoor conservation experience.",
     "bring": "Sturdy shoes, long trousers, sun protection and water. Hand tools are provided.",
     "featured": false,
-    "art": "woodland-care"
+    "art": "woodland-care",
+    "longitude": 144.8342699,
+    "latitude": -37.7893319,
+    "mapLocationLabel": "Approximate Sunshine suburb reference point; not a confirmed meeting point."
   },
   {
     "id": "pocket-forest",
@@ -72,7 +84,10 @@
     "description": "Join a small group to add layers of native greenery to a shared neighbourhood space. Learn where different plants belong and help prepare a welcoming patch for people and wildlife.",
     "bring": "Closed shoes, sun protection and water. Gloves, plants and tools are provided.",
     "featured": false,
-    "art": "pocket-forest"
+    "art": "pocket-forest",
+    "longitude": 145.0078205,
+    "latitude": -37.7418658,
+    "mapLocationLabel": "Approximate Preston suburb reference point; not a confirmed meeting point."
   },
   {
     "id": "habitat-at-home",
@@ -87,6 +102,9 @@
     "description": "Explore how plants, leaf litter and water can create a more inviting garden for wildlife. Leave with a simple plan for one practical change to your own outdoor space.",
     "bring": "A notebook and a photo or sketch of your garden, if you have one.",
     "featured": false,
-    "art": "habitat-at-home"
+    "art": "habitat-at-home",
+    "longitude": 145.0025144,
+    "latitude": -37.8203861,
+    "mapLocationLabel": "Approximate Richmond suburb reference point; not a confirmed meeting point."
   }
 ]
