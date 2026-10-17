@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, defineAsyncComponent, onMounted, ref } from "vue";
 import OpportunityCard from "../components/OpportunityCard.vue";
 import DataStatus from "../components/DataStatus.vue";
 import { useOpportunities } from "../composables/useOpportunities.js";
@@ -9,6 +9,10 @@ const { opportunities, loading, error, loadOpportunities } = useOpportunities();
 const search = ref("");
 const activityType = ref("All");
 const beginnerOnly = ref(false);
+const showMap = ref(false);
+const ActivityMap = defineAsyncComponent(
+  () => import("../components/ActivityMap.vue"),
+);
 
 // Build the dropdown options from the data instead of typing them out.
 const types = computed(() => [
@@ -68,12 +72,25 @@ onMounted(loadOpportunities);
   <DataStatus :loading="loading" :error="error" @retry="loadOpportunities" />
 
   <template v-if="!loading && !error">
+    <button
+      class="btn btn-outline-primary mb-3"
+      :aria-expanded="showMap"
+      aria-controls="activity-trip-planner"
+      @click="showMap = !showMap"
+    >
+      {{ showMap ? "Close trip planner" : "Show map and plan a trip" }}
+    </button>
+    <ActivityMap v-if="showMap" :activities="filtered" />
     <div class="d-flex justify-content-between align-items-center mb-3">
       <p class="mb-0">
         {{ filtered.length }}
         {{ filtered.length === 1 ? "activity" : "activities" }} found
       </p>
-      <button type="button" class="btn btn-secondary btn-sm" @click="clearFilters">
+      <button
+        type="button"
+        class="btn btn-secondary btn-sm"
+        @click="clearFilters"
+      >
         Clear filters
       </button>
     </div>
@@ -86,7 +103,11 @@ onMounted(loadOpportunities);
 
     <div v-else class="alert alert-secondary">
       <p class="mb-2">No activities match your search.</p>
-      <button type="button" class="btn btn-secondary btn-sm" @click="clearFilters">
+      <button
+        type="button"
+        class="btn btn-secondary btn-sm"
+        @click="clearFilters"
+      >
         Show all activities
       </button>
     </div>
