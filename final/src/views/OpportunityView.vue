@@ -3,6 +3,7 @@ import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import DataStatus from "../components/DataStatus.vue";
 import ActivityRating from "../components/ActivityRating.vue";
+import EmailActivity from "../components/EmailActivity.vue";
 import { useOpportunities } from "../composables/useOpportunities.js";
 import { formatDate, formatTime, formatDuration } from "../utils/format.js";
 
@@ -29,6 +30,7 @@ onMounted(loadOpportunities);
         opportunity.activityType
       }}</span>
       <h1>{{ opportunity.title }}</h1>
+      <EmailActivity :activity-id="opportunity.id" />
 
       <img
         :src="`/art/${opportunity.art}.webp`"
