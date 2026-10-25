@@ -14,6 +14,11 @@ const routes = [
   { path: "/", name: "Home", component: HomeView },
   { path: "/discover", name: "Discover", component: DiscoverView },
   {
+    path: "/bookings",
+    name: "Bookings",
+    component: () => import("./views/BookingsView.vue"),
+  },
+  {
     path: "/opportunities/:id",
     name: "Opportunity",
     component: OpportunityView,

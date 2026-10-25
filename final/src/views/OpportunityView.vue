@@ -2,6 +2,7 @@
 import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import DataStatus from "../components/DataStatus.vue";
+import BookingPlanner from "../components/BookingPlanner.vue";
 import ActivityRating from "../components/ActivityRating.vue";
 import EmailActivity from "../components/EmailActivity.vue";
 import { useOpportunities } from "../composables/useOpportunities.js";
@@ -78,6 +79,9 @@ onMounted(loadOpportunities);
         The original activity date is a fictional example. Future demonstration
         sessions have their own dates below.
       </p>
+    </div>
+    <div class="col-12">
+      <BookingPlanner :key="opportunity.id" :activity-id="opportunity.id" />
     </div>
   </div>
 
