@@ -16,6 +16,12 @@ export default defineConfig({
             return "password-validation";
           if (/\/node_modules\/(?:@vue\/|vue\/|vue-router\/)/.test(path))
             return "vue-runtime";
+          if (
+            /\/src\/(?:utils\/(?:format|opportunities|map|savedActivities)\.js|composables\/useSavedActivities\.js|components\/SaveActivity\.vue)$/.test(
+              path,
+            )
+          )
+            return "public-activities";
         },
       },
     },

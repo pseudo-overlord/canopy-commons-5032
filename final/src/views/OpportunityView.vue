@@ -5,6 +5,7 @@ import DataStatus from "../components/DataStatus.vue";
 import BookingPlanner from "../components/BookingPlanner.vue";
 import ActivityRating from "../components/ActivityRating.vue";
 import EmailActivity from "../components/EmailActivity.vue";
+import SaveActivity from "../components/SaveActivity.vue";
 import { useOpportunities } from "../composables/useOpportunities.js";
 import { formatDate, formatTime, formatDuration } from "../utils/format.js";
 
@@ -31,6 +32,7 @@ onMounted(loadOpportunities);
         opportunity.activityType
       }}</span>
       <h1>{{ opportunity.title }}</h1>
+      <SaveActivity :activity-id="opportunity.id" :title="opportunity.title" />
       <EmailActivity :activity-id="opportunity.id" />
 
       <img
