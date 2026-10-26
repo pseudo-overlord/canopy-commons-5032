@@ -50,6 +50,7 @@ const handleLogout = async () => {
         <RouterLink to="/" class="nav-link">Home</RouterLink>
         <RouterLink to="/discover" class="nav-link">Discover</RouterLink>
         <RouterLink to="/bookings" class="nav-link">Sessions</RouterLink>
+        <RouterLink to="/saved" class="nav-link">Saved</RouterLink>
 
         <!-- Only coordinators are shown the overview link. -->
         <RouterLink

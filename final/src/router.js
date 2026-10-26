@@ -19,6 +19,11 @@ const routes = [
     component: () => import("./views/BookingsView.vue"),
   },
   {
+    path: "/saved",
+    name: "Saved",
+    component: () => import("./views/SavedView.vue"),
+  },
+  {
     path: "/opportunities/:id",
     name: "Opportunity",
     component: OpportunityView,
