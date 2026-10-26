@@ -6,6 +6,7 @@ import BookingPlanner from "../components/BookingPlanner.vue";
 import ActivityRating from "../components/ActivityRating.vue";
 import EmailActivity from "../components/EmailActivity.vue";
 import SaveActivity from "../components/SaveActivity.vue";
+import { online } from "../offlineLibrary.js";
 import { useOpportunities } from "../composables/useOpportunities.js";
 import { formatDate, formatTime, formatDuration } from "../utils/format.js";
 
@@ -33,7 +34,13 @@ onMounted(loadOpportunities);
       }}</span>
       <h1>{{ opportunity.title }}</h1>
       <SaveActivity :activity-id="opportunity.id" :title="opportunity.title" />
-      <EmailActivity :activity-id="opportunity.id" />
+      <EmailActivity v-if="online" :activity-id="opportunity.id" />
+      <p v-else role="status">
+        Offline: ratings, email and session availability require a connection.
+        <a :href="`/opportunities/${opportunity.id}`"
+          >Open this activity in the public offline reader</a
+        >.
+      </p>
 
       <img
         :src="`/art/${opportunity.art}.webp`"
@@ -76,13 +83,13 @@ onMounted(loadOpportunities);
     </div>
 
     <div class="col-lg-5">
-      <ActivityRating :activity-id="opportunity.id" />
+      <ActivityRating v-if="online" :activity-id="opportunity.id" />
       <p class="alert alert-secondary">
         The original activity date is a fictional example. Future demonstration
         sessions have their own dates below.
       </p>
     </div>
-    <div class="col-12">
+    <div v-if="online" class="col-12">
       <BookingPlanner :key="opportunity.id" :activity-id="opportunity.id" />
     </div>
   </div>

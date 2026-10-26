@@ -7,6 +7,8 @@ import {
   initialiseAccounts,
   logout,
 } from "./identity.js";
+import OfflineTools from "./components/OfflineTools.vue";
+import { online } from "./offlineLibrary.js";
 
 const router = useRouter();
 const route = useRoute();
@@ -90,7 +92,22 @@ const handleLogout = async () => {
         Retry account storage
       </button>
     </div>
-    <RouterView />
+    <div
+      v-if="
+        !online &&
+        (route.meta.requiresAuth ||
+          ['Login', 'Register', 'Bookings'].includes(route.name))
+      "
+      class="alert alert-info"
+      role="status"
+    >
+      This feature needs a connection. Requests already submitted may still be
+      processed. Reconnect to check their status. You can
+      <a href="/offline.html">read the public offline library</a> and change
+      saved activities.
+    </div>
+    <RouterView v-else />
+    <OfflineTools />
   </main>
 
   <footer class="bg-light border-top py-3 mt-5">
