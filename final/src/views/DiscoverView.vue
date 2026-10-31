@@ -57,11 +57,12 @@ onMounted(loadOpportunities);
       </select>
     </div>
     <div class="col-md-3 d-flex align-items-end">
-      <div class="form-check">
+      <div class="form-check form-switch">
         <input
           id="beginner"
           v-model="beginnerOnly"
           type="checkbox"
+          role="switch"
           class="form-check-input"
         />
         <label for="beginner" class="form-check-label">Beginners welcome</label>

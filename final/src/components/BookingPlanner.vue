@@ -83,6 +83,16 @@ const currentBooking = (session) =>
 const isMine = (session) => currentBooking(session)?.status === "confirmed";
 const clash = (session) =>
   mine.value.some((b) => b.sessionId !== session.id && overlaps(b, session));
+// The newest request comes first. Pending requests have their own notice.
+const latest = computed(() => requests.value.find((r) => r.status));
+function resultLine(r) {
+  const title =
+    sessions.value.find((s) => s.id === r.sessionId)?.title || "this session";
+  if (r.status === "confirmed") return `Reserved: ${title}.`;
+  if (r.status === "cancelled") return `Cancelled: ${title}.`;
+  const verb = r.action === "cancel" ? "cancel" : "reserve";
+  return `Couldn't ${verb} ${title}. ${bookingReason(r.reason)}`;
+}
 const onDay = (day) =>
   scoped.value.filter((s) => dayKey(s.startMillis) === day);
 const myDay = (day) =>
@@ -98,10 +108,6 @@ function move(amount) {
     <p>
       Reserve a place in an upcoming session. Each reservation is for one
       person, and no email is sent when you book or cancel.
-    </p>
-    <p class="small">
-      All calendar dates and times use Melbourne time (AEST/AEDT). Locations
-      remain approximate; these are not real events.
     </p>
     <p v-if="activityId" class="small">
       Showing sessions for this activity only.
@@ -285,19 +291,9 @@ function move(amount) {
         </li>
       </ul>
     </div>
-    <div v-if="currentUser && requests.length" class="mt-3">
-      <h3 class="h5">Recent request results</h3>
-      <ul aria-live="polite">
-        <li v-for="r in requests.slice(0, 5)" :key="r.id">
-          {{ r.action === "cancel" ? "Cancellation" : "Reservation" }} —
-          {{
-            sessions.find((s) => s.id === r.sessionId)?.title || r.sessionId
-          }}: <strong>{{ r.status || "pending" }}</strong
-          >.
-          {{ r.status ? bookingReason(r.reason) : "Waiting for the server." }}
-        </li>
-      </ul>
-    </div>
+    <p v-if="currentUser && latest && !pending" class="mt-3" aria-live="polite">
+      {{ resultLine(latest) }}
+    </p>
   </section>
 </template>
 <style scoped>
