@@ -81,7 +81,6 @@ const submitForm = async (event) => {
           id="password"
           v-model="form.password"
           label="Password"
-          hint="Use at least 8 characters and no more than 72 UTF-8 bytes. Some characters, including emoji, use more than one byte. Previously accepted passwords longer than 72 bytes can no longer be used."
           :error="submitted ? errors.password : ''"
         />
 

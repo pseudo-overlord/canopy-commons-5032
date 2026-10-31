@@ -1,4 +1,4 @@
-import { passwordError } from "./password.js";
+import { newPasswordError, passwordError } from "./password.js";
 
 // Three different kinds of check: required text, email format, and a number range.
 export function validateInterest(form) {
@@ -38,7 +38,9 @@ export function validateAccount(form, isRegistration) {
     errors.email = "Please enter an email address like alexmurphy@example.com.";
   }
 
-  const passwordMessage = passwordError(form.password);
+  const passwordMessage = isRegistration
+    ? newPasswordError(form.password)
+    : passwordError(form.password);
   if (passwordMessage) errors.password = passwordMessage;
 
   if (isRegistration && form.confirmPassword !== form.password) {

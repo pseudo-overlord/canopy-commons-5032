@@ -6,6 +6,7 @@ defineProps({
   id: { type: String, required: true },
   label: { type: String, required: true },
   hint: { type: String, default: "" },
+  warning: { type: String, default: "" },
   error: { type: String, default: "" },
 });
 
@@ -45,7 +46,11 @@ onUnmounted(() => clearTimeout(hideTimer));
         :class="{ 'is-invalid': error }"
         :aria-invalid="error ? 'true' : undefined"
         :aria-describedby="
-          [hint ? `${id}-hint` : '', error ? `${id}-error` : '']
+          [
+            hint ? `${id}-hint` : '',
+            warning ? `${id}-warning` : '',
+            error ? `${id}-error` : '',
+          ]
             .filter(Boolean)
             .join(' ') || undefined
         "
@@ -66,6 +71,14 @@ onUnmounted(() => clearTimeout(hideTimer));
     </div>
 
     <div v-if="hint" :id="`${id}-hint`" class="form-text">{{ hint }}</div>
+    <p
+      v-if="warning"
+      :id="`${id}-warning`"
+      class="form-text text-danger mb-0"
+      aria-live="polite"
+    >
+      {{ warning }}
+    </p>
     <p v-if="visible" class="form-text mb-0">
       Hiding again in {{ SHOW_FOR_MS / 1000 }} seconds.
     </p>

@@ -5,6 +5,7 @@ import { register } from "../identity.js";
 import { focusFirstError } from "../utils/focus.js";
 import { validateAccount } from "../utils/validation.js";
 import PasswordField from "../components/PasswordField.vue";
+import { characterWarning } from "../utils/password.js";
 
 const router = useRouter();
 const form = reactive({
@@ -47,8 +48,7 @@ const submitForm = async (event) => {
     <div class="col-md-6 offset-md-3">
       <h1>Create an account</h1>
       <p class="text-muted">
-        Use a display name and an email address you can verify. Activities are
-        fictional coursework examples.
+        Use a display name and an email address you can verify.
       </p>
 
       <div v-if="serverError" class="alert alert-warning" role="alert">
@@ -105,7 +105,8 @@ const submitForm = async (event) => {
           id="password"
           v-model="form.password"
           label="Password"
-          hint="Use at least 8 characters and no more than 72 UTF-8 bytes. Some characters, including emoji, use more than one byte."
+          hint="8–72 characters: letters A–Z a–z, numbers 0–9 and symbols like ! @ # $ % & *"
+          :warning="characterWarning(form.password)"
           :error="submitted ? errors.password : ''"
         />
 
