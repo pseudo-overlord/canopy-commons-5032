@@ -96,12 +96,16 @@ function move(amount) {
   <section aria-labelledby="booking-title" class="card card-body my-4">
     <h2 id="booking-title" class="h4">Book a demonstration session</h2>
     <p>
-      These are fictional future sessions for the coursework demonstration. Each
-      reservation is for one person. No email is sent when you book or cancel.
+      Reserve a place in an upcoming session. Each reservation is for one
+      person, and no email is sent when you book or cancel.
     </p>
     <p class="small">
       All calendar dates and times use Melbourne time (AEST/AEDT). Locations
       remain approximate; these are not real events.
+    </p>
+    <p v-if="activityId" class="small">
+      Showing sessions for this activity only.
+      <RouterLink to="/bookings">See sessions for all activities</RouterLink>
     </p>
     <p v-if="!cloudMode" class="alert alert-info">
       Reservations require the connected Firebase version.
@@ -190,7 +194,11 @@ function move(amount) {
             </button>
           </template>
         </div>
-        <button class="btn btn-link px-0 mt-2" @click="selectedDay = ''">
+        <button
+          v-if="selectedDay"
+          class="btn btn-link px-0 mt-2"
+          @click="selectedDay = ''"
+        >
           Show all sessions this month
         </button>
         <p v-if="selectedDay" role="status">
@@ -213,7 +221,9 @@ function move(amount) {
               {{ s.capacity - s.reservedCount }} of {{ s.capacity }} places
               available
             </p>
-            <RouterLink :to="`/opportunities/${s.activityId}`"
+            <RouterLink
+              v-if="!activityId"
+              :to="`/opportunities/${s.activityId}`"
               >Activity and access details</RouterLink
             >
             <p v-if="isMine(s)" class="mt-2">

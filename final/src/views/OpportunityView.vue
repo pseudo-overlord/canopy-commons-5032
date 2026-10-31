@@ -84,10 +84,6 @@ onMounted(loadOpportunities);
 
     <div class="col-lg-5">
       <ActivityRating v-if="online" :activity-id="opportunity.id" />
-      <p class="alert alert-secondary">
-        The original activity date is a fictional example. Future demonstration
-        sessions have their own dates below.
-      </p>
     </div>
     <div v-if="online" class="col-12">
       <BookingPlanner :key="opportunity.id" :activity-id="opportunity.id" />

@@ -21,14 +21,14 @@ onMounted(() => {
 <template>
   <h1>Saved activities</h1>
   <p>
-    This list is stored on this browser, shared across accounts on this device,
-    and is not a reservation. Saving an activity does not by itself download the
-    offline library.
+    Saved activities stay on this browser. They are not bookings, and anyone
+    using this browser will see them.
   </p>
   <p>
-    <a href="/offline.html">Open the public offline library</a> to read
-    downloaded details without logging in. Use “Prepare offline copy” below
-    before disconnecting.
+    Going somewhere without signal? Use “Prepare offline copy” at the bottom of
+    this page while you are connected, and your saved activities and their
+    details will still open with no internet. You can also
+    <a href="/offline.html">open the offline library</a> directly.
   </p>
   <div v-if="savedError" class="alert alert-warning" role="alert">
     {{ savedError }}
