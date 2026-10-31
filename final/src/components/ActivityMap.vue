@@ -21,6 +21,18 @@ const searchBusy = ref(false),
 const destination = computed(() =>
   props.activities.find((item) => item.id === destinationId.value),
 );
+// Hand the same two points to Google Maps for transport and walking options.
+const googleMapsUrl = computed(() => {
+  if (!origin.value || !destination.value) return "";
+  const point = (place) => `${place.latitude},${place.longitude}`;
+  const params = new URLSearchParams({
+    api: "1",
+    origin: point(origin.value),
+    destination: point(destination.value),
+    travelmode: "driving",
+  });
+  return `https://www.google.com/maps/dir/?${params}`;
+});
 const searchChannel = requestSlot(),
   routeChannel = requestSlot();
 let L, map, activityLayer, originLayer, routeLayer, resizeObserver;
@@ -59,7 +71,7 @@ function drawActivities() {
   activityLayer.clearLayers();
   props.activities.forEach((activity, index) => {
     const label = document.createElement("span");
-    label.textContent = `${activity.title} — ${activity.suburb} (approximate)`;
+    label.textContent = `${activity.title} — ${activity.place}, ${activity.suburb}`;
     const selected = activity.id === destinationId.value;
     const marker = L.marker([activity.latitude, activity.longitude], {
       title: `Select ${activity.title}, ${activity.suburb}`,
@@ -80,7 +92,7 @@ function drawActivities() {
       .getElement()
       ?.setAttribute(
         "aria-label",
-        `Select ${activity.title}, ${activity.suburb}, approximate location`,
+        `Select ${activity.title}, ${activity.place}, ${activity.suburb}`,
       );
   });
 }
@@ -235,22 +247,16 @@ onUnmounted(() => {
   >
     <h2 id="trip-heading" class="h4">Plan a trip to an activity</h2>
     <p>
-      Search for a starting place in Greater Melbourne, then estimate a drive to
-      an activity's demonstration area.
-    </p>
-    <p class="small text-muted">
-      Locations are approximate suburb reference points for fictional
-      activities, not confirmed meeting points. Check the activity's access
-      notes separately.
+      Choose where you are starting from and an activity, and we will estimate
+      the drive.
     </p>
     <div class="row g-4">
       <div class="col-lg-5">
         <form @submit.prevent="searchPlaces" novalidate>
           <label for="origin-query" class="form-label">Starting place</label>
           <p id="origin-help" class="small">
-            Try a public place such as Flinders Street Station. Searches are
-            sent to Photon; route coordinates are sent to FOSSGIS. No device
-            location is requested.
+            Enter a place or landmark to start your journey from, e.g. Flinders
+            Street Station.
           </p>
           <input
             ref="queryInput"
@@ -310,8 +316,12 @@ onUnmounted(() => {
         <label for="trip-activity" class="form-label"
           >Destination activity</label
         >
+        <p id="destination-help" class="small">
+          Choose the activity you want to get to.
+        </p>
         <select
           id="trip-activity"
+          aria-describedby="destination-help"
           v-model="destinationId"
           class="form-select mb-2"
           :disabled="!activities.length"
@@ -340,6 +350,14 @@ onUnmounted(() => {
         >
           {{ routeBusy ? "Calculating…" : "Estimate driving route" }}
         </button>
+        <a
+          v-if="googleMapsUrl"
+          :href="googleMapsUrl"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-outline-primary ms-2"
+          >Open in Google Maps</a
+        >
         <p v-if="routeBusy" role="status" class="mt-2">
           Calculating the driving estimate…
         </p>
@@ -355,9 +373,9 @@ onUnmounted(() => {
             >
           </p>
           <p class="mb-0 small">
-            From {{ origin.label }} to the approximate
-            {{ destination.suburb }} demonstration point. No live traffic,
-            parking, walking or step-free access estimate is included.
+            From {{ origin.label }} to {{ destination.place }},
+            {{ destination.suburb }}. Live traffic is not included; open it in
+            Google Maps for public transport and walking options.
           </p>
         </div>
       </div>
@@ -377,33 +395,6 @@ onUnmounted(() => {
         ></div>
         <p v-if="mapError" class="alert alert-warning mt-2" role="status">
           {{ mapError }}
-        </p>
-        <p class="small mt-2 mb-0">
-          Place data ©
-          <a
-            href="https://www.openstreetmap.org/copyright"
-            target="_blank"
-            rel="noopener"
-            >OpenStreetMap contributors</a
-          >; search by
-          <a
-            href="https://github.com/komoot/photon"
-            target="_blank"
-            rel="noopener"
-            >Photon</a
-          >; routes by
-          <a
-            href="https://routing.openstreetmap.de/about.html"
-            target="_blank"
-            rel="noopener"
-            >FOSSGIS / OSRM</a
-          >.
-          <a
-            href="https://www.openstreetmap.org/fixthemap"
-            target="_blank"
-            rel="noopener"
-            >Report a map issue</a
-          >.
         </p>
       </div>
     </div>

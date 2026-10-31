@@ -113,6 +113,29 @@ const handleLogout = async () => {
   <footer class="bg-light border-top py-3 mt-5">
     <div class="container text-muted small">
       <p class="mb-0">Canopy Commons Melbourne &middot; 34231846</p>
+      <p v-if="route.name === 'Discover'" class="mb-0 mt-1">
+        Map data &copy;
+        <a
+          href="https://www.openstreetmap.org/copyright"
+          target="_blank"
+          rel="noopener"
+          >OpenStreetMap contributors</a
+        >
+        &middot; Place search by
+        <a
+          href="https://github.com/komoot/photon"
+          target="_blank"
+          rel="noopener"
+          >Photon</a
+        >
+        &middot; Routes by
+        <a
+          href="https://routing.openstreetmap.de/about.html"
+          target="_blank"
+          rel="noopener"
+          >FOSSGIS / OSRM</a
+        >
+      </p>
     </div>
   </footer>
 </template>

@@ -3,7 +3,7 @@
     "id": "creek-corridor-planting",
     "title": "Creek corridor planting",
     "suburb": "Footscray",
-    "place": "Maribyrnong River trail",
+    "place": "Footscray Park",
     "activityType": "Planting",
     "startsAt": "2026-10-10T09:00:00+11:00",
     "durationMinutes": 120,
@@ -13,15 +13,15 @@
     "bring": "Closed shoes, a hat and a refillable water bottle. Tools and gloves are provided in this fictional activity.",
     "featured": true,
     "art": "creek-corridor-planting",
-    "longitude": 144.897345,
-    "latitude": -37.7981339,
-    "mapLocationLabel": "Approximate Footscray suburb reference point; not a confirmed meeting point."
+    "longitude": 144.903933,
+    "latitude": -37.793331,
+    "mapLocationLabel": "Meet at Footscray Park, Footscray."
   },
   {
     "id": "native-garden-workshop",
     "title": "A little native garden",
     "suburb": "Brunswick",
-    "place": "Neighbourhood learning garden",
+    "place": "Gilpin Park",
     "activityType": "Workshop",
     "startsAt": "2026-10-11T10:00:00+11:00",
     "durationMinutes": 90,
@@ -31,15 +31,15 @@
     "bring": "A notebook and an idea of the sunlight in your space. Sample pots and materials are provided.",
     "featured": true,
     "art": "native-garden-workshop",
-    "longitude": 144.9613103,
-    "latitude": -37.7664715,
-    "mapLocationLabel": "Approximate Brunswick suburb reference point; not a confirmed meeting point."
+    "longitude": 144.95131,
+    "latitude": -37.768526,
+    "mapLocationLabel": "Meet at Gilpin Park, Brunswick."
   },
   {
     "id": "pollinator-walk",
     "title": "Meet your local pollinators",
     "suburb": "Dandenong",
-    "place": "Community habitat loop",
+    "place": "Dandenong Park",
     "activityType": "Nature walk",
     "startsAt": "2026-10-17T10:30:00+11:00",
     "durationMinutes": 60,
@@ -49,15 +49,15 @@
     "bring": "Comfortable shoes and water. A camera or magnifying glass is optional.",
     "featured": true,
     "art": "pollinator-walk",
-    "longitude": 145.2098421,
-    "latitude": -37.990119,
-    "mapLocationLabel": "Approximate Dandenong suburb reference point; not a confirmed meeting point."
+    "longitude": 145.21792,
+    "latitude": -37.993586,
+    "mapLocationLabel": "Meet at Dandenong Park, Dandenong."
   },
   {
     "id": "woodland-care",
     "title": "Give the woodland a hand",
     "suburb": "Sunshine",
-    "place": "Western woodland community plot",
+    "place": "H.V. McKay Gardens",
     "activityType": "Habitat care",
     "startsAt": "2026-10-18T09:00:00+11:00",
     "durationMinutes": 150,
@@ -67,15 +67,15 @@
     "bring": "Sturdy shoes, long trousers, sun protection and water. Hand tools are provided.",
     "featured": false,
     "art": "woodland-care",
-    "longitude": 144.8342699,
-    "latitude": -37.7893319,
-    "mapLocationLabel": "Approximate Sunshine suburb reference point; not a confirmed meeting point."
+    "longitude": 144.828341,
+    "latitude": -37.783589,
+    "mapLocationLabel": "Meet at H.V. McKay Gardens, Sunshine."
   },
   {
     "id": "pocket-forest",
     "title": "Plant a pocket of green",
     "suburb": "Preston",
-    "place": "Northern neighbourhood garden",
+    "place": "Ray Bramham Gardens",
     "activityType": "Planting",
     "startsAt": "2026-10-24T09:30:00+11:00",
     "durationMinutes": 120,
@@ -85,15 +85,15 @@
     "bring": "Closed shoes, sun protection and water. Gloves, plants and tools are provided.",
     "featured": false,
     "art": "pocket-forest",
-    "longitude": 145.0078205,
-    "latitude": -37.7418658,
-    "mapLocationLabel": "Approximate Preston suburb reference point; not a confirmed meeting point."
+    "longitude": 144.997816,
+    "latitude": -37.746843,
+    "mapLocationLabel": "Meet at Ray Bramham Gardens, Preston."
   },
   {
     "id": "habitat-at-home",
     "title": "Make room for wildlife",
     "suburb": "Richmond",
-    "place": "Community garden classroom",
+    "place": "Barkly Gardens",
     "activityType": "Workshop",
     "startsAt": "2026-10-25T13:00:00+11:00",
     "durationMinutes": 90,
@@ -103,8 +103,8 @@
     "bring": "A notebook and a photo or sketch of your garden, if you have one.",
     "featured": false,
     "art": "habitat-at-home",
-    "longitude": 145.0025144,
-    "latitude": -37.8203861,
-    "mapLocationLabel": "Approximate Richmond suburb reference point; not a confirmed meeting point."
+    "longitude": 145.00138,
+    "latitude": -37.828378,
+    "mapLocationLabel": "Meet at Barkly Gardens, Richmond."
   }
 ]
